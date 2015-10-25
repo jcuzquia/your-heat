@@ -1,0 +1,26 @@
+@(projectForm: Form[Project])
+@import helper._
+
+
+@main("Project Form"){
+	<div class="container">
+		<h1>Project Form</h1>
+	@helper.form(action = routes.Application.saveProject()){
+	<fieldset>
+		<legend>Project (@projectForm("name").valueOr("New"))</legend>
+		@helper.inputText(projectForm("Name"), '_label -> "Project Name")
+		<div>
+			@helper.inputFile(projectForm("meterData"), '_label -> "Load Meter Data")
+			<button class="btn btn-alert" onclick="" type="button"> Working</button>
+			@if(!projectForm("meterData").valueOr("").isEmpty()){
+			
+		}
+		</div>
+		
+	</fieldset>
+	
+	<input type="submit" class="btn btn-primary" value="Save">
+	
+	}
+	</div>
+}
