@@ -1,11 +1,14 @@
 package controllers;
 
+import java.util.List;
+
 import models.Project;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.project_form;
+import views.html.projects_list;
 import views.html.commons.*;
 
 public class Application extends Controller {
@@ -17,7 +20,9 @@ public class Application extends Controller {
 	}
 
 	public Result projects(Integer page) {
-		return TODO;
+		List<Project> projects = Project.findAll();
+		
+		return ok(projects_list.render(projects));
 	}
 
 	private static final Form<Project> projectForm = Form.form(Project.class);
@@ -28,9 +33,9 @@ public class Application extends Controller {
 
 	public Result saveProject() {
 		Form<Project> boundForm = projectForm.bindFromRequest();
-		Project project = projectForm.get();
+		Project project = boundForm.get();
 		project.save();
-		return ok(String.format("Saved product %s", project));
+		return redirect(routes.Application.projects(1));
 	}
 
 }

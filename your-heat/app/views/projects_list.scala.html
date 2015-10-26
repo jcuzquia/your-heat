@@ -1,0 +1,29 @@
+@(projects: List[Project])
+
+<div class="container">
+@main("Projects Catalogue"){
+	<h2>All Projects</h2>
+	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				@for(project <- projects){
+					<tr>
+						<td>@project.name</td>
+					</tr>
+				}
+			</tbody>
+	</table>
+}
+
+	<div class="btn-group">
+		<button class="btn btn-primary" onclick="window.location='@routes.Application.newProject()';" value="add">Add New Project</button>
+		<button class="btn btn-danger" onclick="window.location='@routes.Application.newProject()';">Add New Project</button>
+		
+	</div>
+
+</div>
