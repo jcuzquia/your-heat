@@ -5,10 +5,15 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET		/projects					controllers.Application.projects(page: Integer ?= 0)
+GET		/projects/edit/:name		controllers.Application.editProject(name: String)
 GET		/new-project				controllers.Application.newProject()
+GET		/project/info/:name			controllers.Application.projectInfo(name: String)
 
 POST 	/projects/save			controllers.Application.saveProject()
 POST	/load-meter					controllers.MeterController.loadMeterData()
+
+
+DELETE	/projects/del/:name			controllers.Application.delete(name: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -14,8 +14,8 @@ import play.data.validation.Constraints.Required;
 @Entity
 public class Project extends Model{
 	
-	@Id
-	public long id;
+//	@Id
+//	public long id;
 	
 	@Required
 	public String name;
@@ -23,13 +23,13 @@ public class Project extends Model{
 	public String supportName; 
 	public LinkedList<Meter> meters;
 	
-	private static List<Project> projects = new ArrayList<Project>();
+	private static Model.Finder<String, Project> find = new Model.Finder<String, Project>(Project.class);
 	
 	public static List<Project> findAll(){
-		return new ArrayList<Project>(projects);
+		return Project.find.orderBy("name").findList();
 	}
 	
-	public void save(){
-		projects.add(this);
+	public static Project retrieve(String name){
+		return find.ref(name);
 	}
 }

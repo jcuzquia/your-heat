@@ -13,7 +13,9 @@
 			<tbody>
 				@for(project <- projects){
 					<tr>
-						<td>@project.name</td>
+						<td><a href="@routes.Application.projectInfo(project.name)">@project.name</a></td>
+						<td><button type="button" class="btn-info" onclick="window.location='@routes.Application.editProject(project.name)';" value="edit"> Edit</button></td>
+						<td><button type="button" class="btn-danger" onclick="del('@routes.Application.delete(project.name)');" value="delete">Delete</button></td>
 					</tr>
 				}
 			</tbody>
@@ -22,8 +24,6 @@
 
 	<div class="btn-group">
 		<button class="btn btn-primary" onclick="window.location='@routes.Application.newProject()';" value="add">Add New Project</button>
-		<button class="btn btn-danger" onclick="window.location='@routes.Application.newProject()';">Add New Project</button>
-		
 	</div>
 
 </div>
